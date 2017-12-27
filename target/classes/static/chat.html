@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="simpleChatSample">
+	<head>
+	  <meta charset="utf-8" />
+	  <title>Simple Chat Sample</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	  <link href="lib/flat-ui/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+	  <link href="lib/flat-ui/dist/css/flat-ui.css" rel="stylesheet">
+	  <link href="lib/angularjs-toaster/toaster.css" rel="stylesheet">
+      
+	  <link href="css/chat.css" rel="stylesheet">	  
+	</head>
+	<body>
+		
+		<div class="container" ng-controller="ChatController">
+			<toaster-container></toaster-container>
+			
+			<div class="row">
+				<nav class="navbar navbar-inverse" role="navigation">
+		            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+		              <h1><strong>Simple Chat Sample</strong></h1>
+		              <ul class="nav navbar-nav navbar-right">           
+		              	<li><a nohref="" ng-show="!showHistory" ng-click="showHistoryPage()">History</a></li>
+		              	<li><a nohref="" ng-show="showHistory" ng-click="showHistoryPage()">Chat</a></li>
+		                <li><a href="/logout">Logout ({{username}})</a></li>
+		               </ul>
+		            </div>
+		          </nav>
+			</div>
+	        <div class="row" ng-show="!showHistory">
+        		<div class="col-xs-4">
+        			<h5>Participants ({{participants.length}}) </h5>
+        			<div class="share">
+	        			<ul ng-repeat="participant in participants">
+	        				<li>
+	        					<span class="input-icon fui-new" ng-show="participant.typing"></span>
+	        					<span class="input-icon fui-user" ng-show="!participant.typing"></span>
+	        					<a href="" >{{participant.username}}</a>
+	        					
+	        				</li>
+	        			</ul>
+        			</div>
+        		</div>
+        		<div class="col-xs-8 chat-box" >
+        			<h5>Chat Messages</h5>
+	        		<div ng-repeat="message in messages">
+	       	 			<small print-message></small>
+	      			</div>
+        		</div>
+        	</div>
+        	<div class="row" ng-show="showHistory">
+        		<div class="form-group">
+        			<h3>History Messages</h3>
+	        		<div ng-repeat="message in historyMessages">
+	       	 			<small print-history-message></small>
+	      			</div>
+        		</div>
+        	</div>
+        	<div class="row" ng-show="!showHistory">
+       			<div class="form-group">
+				  <input id="newMessageInput" type="text" class="form-control" placeholder="Type your message, then press enter" ng-model="newMessage" ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()"/>
+				</div>
+        	</div>
+	    </div>
+	
+		<!-- 3rd party -->
+		<script src="lib/angular/angular.min.js"></script>
+	    <script src="lib/angular-animate/angular-animate.min.js"></script>
+	    <script src="lib/angularjs-toaster/toaster.js"></script>
+	    <script src="lib/angularjs-scroll-glue/src/scrollglue.js"></script>
+	    <script src="lib/sockjs/sockjs.min.js"></script>
+	    <script src="lib/stomp/lib/stomp.min.js"></script>
+		
+		<!-- App -->
+		<script src="js/app.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/directives.js"></script>
+	</body>
+</html>
