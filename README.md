@@ -68,10 +68,18 @@ angular.module('myApp', ['ngAnimate']);
 3. Visit [http://localhost:8080/](http://localhost:8080) 
 
 ## Notes
+- The necessary scripts are run in application.java when starting the application.
 - Chat messages are persisted to the database.
 - Participant List is just every user in the session other than the current user (simple feature for demo, not meant to be realistic)
 - Authentication users are not persisted to the database.
 - Admin is the superuser and  password decided to admin.
+
+ username : mec password : murt;
+ username : spring password : mem;
+ username : wolwerine password : fff;
+ username : chat password : aaaa;
+ username : data password : dddd;
+
 
 ## License
 MIT
